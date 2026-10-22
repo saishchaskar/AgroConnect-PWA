@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   standalone: true,
   template: `
-    <div class="page-shell">
+    <div class="app-shell">
       <header class="topbar">
-        <div class="brand-block">
+        <div class="brand-wrap">
           <div class="brand-mark">A</div>
           <div>
             <p class="eyebrow">AI-driven crop intelligence</p>
@@ -16,228 +16,211 @@ import { Component } from '@angular/core';
         <button class="primary-btn">Diagnose crop</button>
       </header>
 
-      <main class="content-grid">
-        <section class="hero-card">
-          <div class="copy">
-            <span class="badge">PWA-ready agritech platform</span>
-            <h2>Detect disease early and act with confidence.</h2>
+      <main class="dashboard-layout">
+        <section class="hero-panel">
+          <div class="hero-copy">
+            <span class="badge">PWA-ready agri platform</span>
+            <h2>Early plant disease detection for better farm decisions.</h2>
             <p>
-              AgroConnect helps farmers detect crop disease from images, retrieve treatment guidance,
-              and access multilingual recommendations for smarter decision-making.
+              Upload crop images, identify disease risk using AI, and receive actionable treatment guidance
+              powered by agronomy data and retrieval-augmented generation.
             </p>
             <div class="cta-row">
               <button class="primary-btn">Start diagnosis</button>
-              <button class="secondary-btn">View insights</button>
+              <button class="secondary-btn">View dashboard</button>
             </div>
           </div>
 
-          <div class="stats-panel">
-            <div class="stat-box">
-              <span class="stat-label">Disease classes</span>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <span class="metric-label">Disease classes</span>
               <strong>450+</strong>
             </div>
-            <div class="stat-box">
-              <span class="stat-label">Regions covered</span>
+            <div class="metric-card">
+              <span class="metric-label">Regions</span>
               <strong>India</strong>
             </div>
-            <div class="stat-box accent">
-              <span class="stat-label">Response flow</span>
+            <div class="metric-card highlight">
+              <span class="metric-label">AI stack</span>
               <strong>ResNet50 + RAG</strong>
             </div>
           </div>
         </section>
 
-        <section class="feature-grid">
-          <article class="feature-card">
-            <h3>AI disease detection</h3>
-            <p>Use crop images and similarity-based matching with ResNet50-based embeddings.</p>
-          </article>
-          <article class="feature-card">
-            <h3>RAG treatment assistant</h3>
-            <p>Retrieve and summarize agronomic guidance for symptoms, causes, and treatment.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Multilingual guidance</h3>
-            <p>Support additional language flows to improve accessibility for farmers.</p>
-          </article>
+        <section class="content-grid">
+          <app-diagnosis-form></app-diagnosis-form>
+          <app-dashboard-card title="Recent insights" [items]="insights"></app-dashboard-card>
         </section>
       </main>
     </div>
   `,
   styles: [
     `
-      .page-shell {
+      :host {
+        display: block;
+        min-height: 100vh;
+      }
+
+      .app-shell {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 32px 24px 72px;
+        padding: 24px 20px 72px;
       }
 
       .topbar {
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
         margin-bottom: 28px;
       }
 
-      .brand-block {
+      .brand-wrap {
         display: flex;
         align-items: center;
         gap: 14px;
       }
 
       .brand-mark {
-        width: 42px;
-        height: 42px;
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
         display: grid;
         place-items: center;
-        background: linear-gradient(135deg, var(--primary), #57aa6d);
+        background: linear-gradient(135deg, #1f7a45, #5fa96f);
         color: white;
-        border-radius: 12px;
         font-weight: 800;
-        box-shadow: var(--shadow);
+        box-shadow: 0 16px 32px rgba(26, 79, 35, 0.18);
       }
 
       .eyebrow {
-        margin: 0;
-        color: var(--muted);
-        font-size: 12px;
-        letter-spacing: 0.08em;
+        font-size: 10px;
         text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #54705f;
+        margin: 0;
       }
 
       h1 {
-        margin: 2px 0 0;
+        margin: 0;
         font-size: clamp(1.4rem, 2vw, 2rem);
       }
 
-      .primary-btn, .secondary-btn {
-        border: none;
-        border-radius: 12px;
-        padding: 0.8rem 1.2rem;
-        font-weight: 700;
-        cursor: pointer;
-      }
-
-      .primary-btn {
-        background: var(--primary);
-        color: white;
-        box-shadow: var(--shadow);
-      }
-
-      .secondary-btn {
-        background: transparent;
-        border: 1px solid var(--border);
-        color: var(--text);
-      }
-
-      .content-grid {
+      .hero-panel {
         display: grid;
-        gap: 22px;
-      }
-
-      .hero-card {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 24px;
-        box-shadow: var(--shadow);
-        padding: 28px;
-        display: grid;
-        grid-template-columns: 1.4fr 0.8fr;
+        grid-template-columns: 1.5fr 0.8fr;
         gap: 20px;
-      }
-
-      .copy h2 {
-        margin: 12px 0 14px;
-        font-size: clamp(2rem, 4vw, 3.2rem);
-        line-height: 1.1;
-      }
-
-      .copy p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 1.05rem;
-        line-height: 1.7;
+        background: rgba(255,255,255,0.85);
+        border: 1px solid #dfe8dc;
+        border-radius: 26px;
+        padding: 28px;
+        box-shadow: 0 24px 48px rgba(21, 62, 32, 0.08);
       }
 
       .badge {
         display: inline-flex;
-        background: var(--accent);
-        color: var(--primary-strong);
-        border: 1px solid rgba(43, 122, 75, 0.12);
+        background: #eaf7ec;
+        color: #1f5a39;
+        border: 1px solid #cfe6d1;
         border-radius: 999px;
-        padding: 0.42rem 0.8rem;
-        font-size: 0.76rem;
+        padding: 6px 12px;
+        font-size: 11px;
         font-weight: 700;
+      }
+
+      h2 {
+        margin: 16px 0 12px;
+        font-size: clamp(2.1rem, 4vw, 3.3rem);
+        line-height: 1.08;
+      }
+
+      .hero-copy p {
+        margin: 0;
+        color: #54635e;
+        line-height: 1.8;
+        font-size: 1.04rem;
       }
 
       .cta-row {
         display: flex;
         gap: 12px;
-        margin-top: 24px;
+        margin-top: 26px;
       }
 
-      .stats-panel {
+      .primary-btn, .secondary-btn {
+        border: none;
+        border-radius: 12px;
+        padding: 0.85rem 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .primary-btn {
+        background: linear-gradient(135deg, #1f7a45, #4eaa69);
+        color: white;
+        box-shadow: 0 18px 30px rgba(31, 122, 69, 0.22);
+      }
+
+      .secondary-btn {
+        background: transparent;
+        border: 1px solid #d8e4d9;
+        color: #163421;
+      }
+
+      .metrics-grid {
         display: grid;
-        gap: 14px;
         align-content: center;
+        gap: 16px;
       }
 
-      .stat-box {
-        background: var(--panel-alt);
-        border: 1px solid var(--border);
-        border-radius: 18px;
+      .metric-card {
+        background: #f3faf3;
+        border: 1px solid #dfe9df;
         padding: 18px;
+        border-radius: 18px;
       }
 
-      .stat-box.accent {
-        background: linear-gradient(135deg, #edf7f0, #ebf3ff);
+      .metric-card.highlight {
+        background: linear-gradient(135deg, #edf9f0, #ecf3ff);
       }
 
-      .stat-label {
+      .metric-label {
         display: block;
-        color: var(--muted);
+        color: #557062;
         margin-bottom: 8px;
       }
 
       strong {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
       }
 
-      .feature-grid {
+      .content-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .feature-card {
-        background: rgba(255,255,255,0.65);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 18px;
-        box-shadow: var(--shadow);
-      }
-
-      .feature-card h3 {
-        margin-top: 0;
-        margin-bottom: 10px;
-      }
-
-      .feature-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 20px;
+        margin-top: 22px;
       }
 
       @media (max-width: 900px) {
-        .hero-card {
+        .hero-panel,
+        .content-grid {
           grid-template-columns: 1fr;
         }
 
-        .feature-grid {
-          grid-template-columns: 1fr;
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 14px;
         }
       }
     `
   ]
 })
-export class AppComponent {}
+export class AppComponent {
+  insights = [
+    'AI disease prediction is ready for crop image uploads',
+    'RAG responses can surface symptoms, causes, and treatment plans',
+    'PWA support is planned for field-friendly mobile access'
+  ];
+}
+
+import { Component, Input } from '@angular/core';
