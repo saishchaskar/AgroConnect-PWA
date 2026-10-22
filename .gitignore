@@ -1,0 +1,20 @@
+# .gitignore
+
+# Node / Angular
+node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.cache/
+
+# Java / Spring Boot
+backend/target/
+backend/.idea/
+backend/.classpath
+backend/.project
+backend/.settings/
+
+# OS / editor
+.DS_Store
+*.log
+.vscode/
+.idea/
