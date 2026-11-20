@@ -18,3 +18,4 @@ backend/.settings/
 *.log
 .vscode/
 .idea/
+backend/src/main/resources/serviceAccountKey.json
