@@ -1,12 +1,13 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://your-production-backend.com',
+  apiUrl: 'http://localhost:8080/api',
   firebase: {
-    apiKey: 'YOUR_FIREBASE_WEB_API_KEY',
+    apiKey: 'AIzaSyDIoHO0toJ3MNCFdTZ69vVuMGz5oqyHZkk',
     authDomain: 'agroconnect-ind.firebaseapp.com',
     projectId: 'agroconnect-ind',
-    storageBucket: 'agroconnect-ind.appspot.com',
-    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-    appId: 'YOUR_APP_ID'
+    storageBucket: 'agroconnect-ind.firebasestorage.app',
+    messagingSenderId: '512018691745',
+    appId: '1:512018691745:web:195e1a8033507be65322e0',
+    measurementId: 'G-GXYEZ44QP8'
   }
 };

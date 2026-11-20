@@ -19,3 +19,7 @@ backend/.settings/
 .vscode/
 .idea/
 backend/src/main/resources/serviceAccountKey.json
+
+frontend/src/environments/environment.ts
+frontend/src/environments/environment.prod.ts
+backend/target/
