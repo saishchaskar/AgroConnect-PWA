@@ -1,25 +1,11 @@
-# .gitignore
+# Private backend credentials & local DB
+backend/src/main/resources/serviceAccountKey.json
+.env
 
-# Node / Angular
-node_modules/
+# Build outputs & dependencies
+backend/target/
+backend/data/
 frontend/dist/
 frontend/.angular/
-frontend/.cache/
-
-# Java / Spring Boot
-backend/target/
-backend/.idea/
-backend/.classpath
-backend/.project
-backend/.settings/
-
-# OS / editor
-.DS_Store
+frontend/node_modules/
 *.log
-.vscode/
-.idea/
-backend/src/main/resources/serviceAccountKey.json
-
-frontend/src/environments/environment.ts
-frontend/src/environments/environment.prod.ts
-backend/target/

@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api',
+  apiBaseUrl: 'http://localhost:8080',
+  apiUrl: 'http://localhost:8080',
   firebase: {
     apiKey: 'AIzaSyDIoHO0toJ3MNCFdTZ69vVuMGz5oqyHZkk',
     authDomain: 'agroconnect-ind.firebaseapp.com',
