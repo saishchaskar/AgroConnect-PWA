@@ -1,6 +1,6 @@
 # AgroConnect PWA
 
-[Java](https://www.google.com/search?q=https%3A%2F%2Fopenjdk.org%2F) [Spring Boot](https://www.google.com/search?q=https%3A%2F%2Fspring.io%2Fprojects%2Fspring-boot) [Angular](https://www.google.com/search?q=https%3A%2F%2Fangular.dev%2F) [TFLite](https://www.google.com/search?q=https%3A%2F%2Fwww.tensorflow.org%2Flite) [RAG](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fsaishchaskar%2Fagroconnect-pwa)
+[![Java](https://img.shields.io/badge/Java-21-007396?style=for-the-badge&logo=openjdk&logoColor=white)](https://openjdk.org/) [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot) [![Angular](https://img.shields.io/badge/Angular-18%20PWA-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/) [![TFLite](https://img.shields.io/badge/Edge%20AI-TFLite%20INT8-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/lite) [![RAG](https://img.shields.io/badge/Cloud%20AI-Gemini%202.0%20%2B%20ChromaDB-4285F4?style=for-the-badge)](https://github.com/saishchaskar/agroconnect-pwa)
 
 **AgroConnect PWA** is an offline-first, AI-driven crop disease management platform built for Indian farmers and agricultural stakeholders. It pairs **on-device edge vision (<300ms, <15 MB)** with a **guardrailed Cloud RAG pipeline** and **22 Indic language localization** to deliver safe, weather-aware remediation guidance even under unstable rural connectivity.
 
@@ -17,7 +17,7 @@ Field requirements gathered from community surveys highlight why an offline-firs
 | Delayed Expert Access | **74%** | Weather Spray Alerts | **84%** |
 | Unsure Pesticide Dosage | **68%** | Organic-First Remedies | **79%** |
 
-
+![Community Survey & Rural Field Requirement Analysis](./docs/images/fig5-community-survey.png)
 
 ---
 
@@ -34,7 +34,7 @@ AgroConnect uses a **two-layer hybrid architecture** so leaf diagnosis works off
    - **Hallucination Prevention:** Enforces a **cosine similarity threshold (≥ 0.70)** for Top-3 retrieval before **Gemini 2.0 Flash / Gemma 2** generates structured JSON advisories; low-confidence queries trigger a **Safe KVK Officer Fallback**.
    - **Semantic Cache & Localization:** **Redis** caches verified advisories (**0.1s** lookup) alongside rain-spray weather rules, and **AI4Bharat IndicTrans2** localizes output into **22 Indic languages**.
 
-
+![End-to-End Hybrid AgroConnect System Architecture](./docs/images/fig1-system-architecture.jpg)
 
 ```mermaid
 flowchart LR
@@ -58,12 +58,12 @@ flowchart LR
 ### On-Device Model Optimization & TFLite Deployment
 `Curated Dataset (450+ Classes)` → `224×224 Resize, CLAHE & Augmentation` → `Transfer Learning (MobileNetV3-Large / EfficientNet-Lite0)` → `INT8 Quantization-Aware Training` → `TFLite FlatBuffer (<15 MB)` → `Android NNAPI / GPU Delegate (<300ms)`
 
-
+![On-Device Model Optimization & TFLite Deployment Pipeline](./docs/images/fig2-edge-tflite-pipeline.png)
 
 ### Cloud RAG Ingestion & Hallucination Prevention
 `ICAR / PPQS Manuals + Daily Crawler` → `500-Token Chunking & text-embedding-004` → `ChromaDB Top-3 Retrieval` → `Similarity ≥ 0.70 Gate` → `Grounded JSON Advisory (Redis) or KVK Fallback`
 
-
+![Cloud RAG Ingestion & Hallucination-Prevention Pipeline](./docs/images/fig3-cloud-rag-pipeline.jpg)
 
 ---
 
@@ -78,7 +78,7 @@ flowchart LR
 
 | Farmer Workflow | 4-Phase Agile Roadmap |
 | :--- | :--- |
-|  |  |
+| ![Proposed Farmer Workflow](./docs/images/fig4-farmer-workflow.png) | ![Farmer User Journey & Agile Roadmap](./docs/images/farmer-journey-roadmap.png) |
 
 ---
 
@@ -117,6 +117,6 @@ cd backend
 
 ## Contributing & Project Tracking
 
-- See [PROJECT\_BOARD.md](https://www.google.com/search?q=.%2FPROJECT_BOARD.md) for the GitHub Projects board and sprint roadmap.
-- See [GITHUB\_ISSUES.md](https://www.google.com/search?q=.%2FGITHUB_ISSUES.md) for open tasks and backlog items.
-- See [CONTRIBUTING.md](https://www.google.com/search?q=.%2FCONTRIBUTING.md) for contribution guidelines.
+- See [PROJECT_BOARD.md](./PROJECT_BOARD.md) for the GitHub Projects board and sprint roadmap.
+- See [GITHUB_ISSUES.md](./GITHUB_ISSUES.md) for open tasks and backlog items.
+- See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
